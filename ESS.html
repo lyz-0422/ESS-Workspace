@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ESS 儲能系統監控</title>
+<title>ESS Energy Storage System Monitor</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.min.js"></script>
@@ -174,74 +174,74 @@ select:focus { outline: none; border-color: #7a8ba0; box-shadow: 0 0 0 3px rgba(
 
 <div class="container">
   <div class="header fade-in">
-    <h2>ESS 儲能系統監控儀表板</h2>
-    <div class="header-subtitle" id="lastUpdate">正在連接 Firebase...</div>
+    <h2>ESS Energy Storage System Monitoring Dashboard</h2>
+    <div class="header-subtitle" id="lastUpdate">Connecting to Firebase...</div>
   </div>
 
-  <!-- 除錯面板 -->
+  <!-- Debug Panel -->
   <div class="debug-panel fade-in" id="debugPanel">
-    <div class="debug-title">🔍 系統除錯資訊</div>
+    <div class="debug-title">🔍 System Debug Info</div>
     <div id="debugLog"></div>
   </div>
 
   <div class="time-granularity fade-in">
-    <div class="granularity-label"><span>📊</span>分析粒度</div>
+    <div class="granularity-label"><span>📊</span>Analysis Granularity</div>
     <div class="granularity-buttons">
-      <button class="btn-granularity active" onclick="setMode('day', this)">本日</button>
-      <button class="btn-granularity" onclick="setMode('week', this)">本週</button>
-      <button class="btn-granularity" onclick="setMode('month', this)">本月</button>
+      <button class="btn-granularity active" onclick="setMode('day', this)">Today</button>
+      <button class="btn-granularity" onclick="setMode('week', this)">This Week</button>
+      <button class="btn-granularity" onclick="setMode('month', this)">This Month</button>
     </div>
   </div>
 
   <div class="timeline-nav fade-in">
     <div class="date-group">
       <span class="date-icon">📅</span>
-      <label id="dateLabel">日期</label>
+      <label id="dateLabel">Date</label>
       <select id="dateSelect"></select>
     </div>
     <div class="nav-controls" id="navControls">
-      <button id="prev">← 上一筆</button>
-      <button id="next">下一筆 →</button>
+      <button id="prev">← Previous</button>
+      <button id="next">Next →</button>
       <div class="progress-indicator">
         <div class="progress-bar-container"><div id="progressBar" class="progress-bar-fill" style="width:0%"></div></div>
         <div id="progressText" class="progress-text">0 / 0</div>
       </div>
     </div>
-    <button onclick="resetZoom()" class="btn-primary">重置視圖</button>
+    <button onclick="resetZoom()" class="btn-primary">Reset View</button>
   </div>
 
   <div class="stats-grid fade-in">
-    <div class="stat-card"><div class="stat-label">平均負載</div><div id="avgLoad" class="stat-value">--</div></div>
-    <div class="stat-card"><div class="stat-label">最大/尖峰負載</div><div id="maxLoad" class="stat-value">--</div></div>
-    <div class="stat-card"><div class="stat-label">平均SOC</div><div id="avgSOC" class="stat-value">--</div></div>
-    <div class="stat-card"><div class="stat-label">平均ESS功率</div><div id="avgESS" class="stat-value">--</div></div>
+    <div class="stat-card"><div class="stat-label">Average Load</div><div id="avgLoad" class="stat-value">--</div></div>
+    <div class="stat-card"><div class="stat-label">Max / Peak Load</div><div id="maxLoad" class="stat-value">--</div></div>
+    <div class="stat-card"><div class="stat-label">Average SOC</div><div id="avgSOC" class="stat-value">--</div></div>
+    <div class="stat-card"><div class="stat-label">Average ESS Power</div><div id="avgESS" class="stat-value">--</div></div>
   </div>
 
   <div class="data-cards fade-in" id="dataCards">
-    <div class="data-card"><div class="data-label"><span class="dot" style="background:#546e7a"></span>時間</div><div id="time" class="data-value" style="font-size:16px">--</div></div>
-    <div class="data-card"><div class="data-label"><span class="dot" style="background:#2ecc71"></span>原始負載 (kW)</div><div id="originalLoad" class="data-value">--</div></div>
-    <div class="data-card"><div class="data-label"><span class="dot" style="background:#fbc02d"></span>調節後負載 (kW)</div><div id="adjustedLoad" class="data-value">--</div></div>
-    <div class="data-card"><div class="data-label"><span class="dot" style="background:#ff4757"></span>契約容量 (kW)</div><div id="contract" class="data-value">--</div></div>
-    <div class="data-card"><div class="data-label"><span class="dot" style="background:#00bcd4"></span>ESS功率 (kW)</div><div id="essPower" class="data-value">--</div></div>
+    <div class="data-card"><div class="data-label"><span class="dot" style="background:#546e7a"></span>Timestamp</div><div id="time" class="data-value" style="font-size:16px">--</div></div>
+    <div class="data-card"><div class="data-label"><span class="dot" style="background:#2ecc71"></span>Original Load (kW)</div><div id="originalLoad" class="data-value">--</div></div>
+    <div class="data-card"><div class="data-label"><span class="dot" style="background:#fbc02d"></span>Adjusted Load (kW)</div><div id="adjustedLoad" class="data-value">--</div></div>
+    <div class="data-card"><div class="data-label"><span class="dot" style="background:#ff4757"></span>Contract Capacity (kW)</div><div id="contract" class="data-value">--</div></div>
+    <div class="data-card"><div class="data-label"><span class="dot" style="background:#00bcd4"></span>ESS Power (kW)</div><div id="essPower" class="data-value">--</div></div>
     <div class="data-card"><div class="data-label"><span class="dot" style="background:#ffd93d"></span>SOC (%)</div><div id="soc" class="data-value">--</div></div>
   </div>
 
   <div class="chart-container fade-in">
     <div class="chart-header">
-      <div class="chart-title" id="mainChartTitle">用電曲線 (調度前後)</div>
+      <div class="chart-title" id="mainChartTitle">Power Consumption Curve (Before & After Dispatch)</div>
     </div>
     <canvas id="mainChart" height="100"></canvas>
   </div>
 
   <div class="chart-container fade-in">
     <div class="chart-header">
-      <div class="chart-title">ESS 儲能系統狀態</div>
+      <div class="chart-title">ESS Energy Storage System Status</div>
     </div>
     <canvas id="essChart" height="100"></canvas>
   </div>
 
   <div class="trend-indicator fade-in" id="trendIndicator">
-    <div class="trend-title">當前趨勢</div>
+    <div class="trend-title">Current Trend</div>
     <div class="trend-value" id="trendValue">--</div>
     <div class="trend-change" id="trendChange"><span>--</span></div>
   </div>
@@ -251,7 +251,7 @@ select:focus { outline: none; border-color: #7a8ba0; box-shadow: 0 0 0 3px rgba(
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
 import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js";
 
-// Firebase 配置
+// Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyBhCw1uuakhiPSouJoJAaZo8llJydq8-yk",
   authDomain: "esssimulation.firebaseapp.com",
@@ -281,43 +281,43 @@ Chart.defaults.color = '#5a6c7d';
 Chart.defaults.borderColor = '#e9ecef';
 Chart.defaults.font.family = "'Noto Sans TC', sans-serif";
 
-// 除錯日誌函數
+// Debug log function
 function log(message, type = 'info') {
   const debugLog = document.getElementById('debugLog');
-  const timestamp = new Date().toLocaleTimeString('zh-TW');
+  const timestamp = new Date().toLocaleTimeString('en-US');
   const color = type === 'error' ? '#e74c3c' : type === 'success' ? '#27ae60' : '#5a6c7d';
   debugLog.innerHTML += `<div class="debug-item" style="color:${color}">[${timestamp}] ${message}</div>`;
   debugLog.scrollTop = debugLog.scrollHeight;
   console.log(message);
 }
 
-// 初始化 Firebase
-log('🔌 初始化 Firebase 連接...');
+// Initialize Firebase
+log('🔌 Initializing Firebase connection...');
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 const dataRef = ref(db, "/ems_data");
-log('✅ Firebase 應用已初始化');
-log(`📍 監聽路徑: /ems_data`);
+log('✅ Firebase app initialized');
+log(`📍 Listening on path: /ems_data`);
 
 onValue(dataRef, (snapshot) => {
-  log('📡 收到 Firebase 數據更新');
+  log('📡 Firebase data update received');
   
   const raw = snapshot.val();
   
   if (!raw) {
-    log('❌ 錯誤: Firebase 返回空數據', 'error');
-    document.getElementById('lastUpdate').innerText = "❌ Firebase 中無數據,請先執行 Colab 上傳";
+    log('❌ Error: Firebase returned empty data', 'error');
+    document.getElementById('lastUpdate').innerText = "❌ No data in Firebase. Please run the Colab upload first.";
     return;
   }
 
-  log(`✅ 成功獲取 Firebase 數據`);
-  log(`📊 頂層鍵值: ${Object.keys(raw).slice(0, 5).join(', ')}...`);
+  log(`✅ Firebase data retrieved successfully`);
+  log(`📊 Top-level keys: ${Object.keys(raw).slice(0, 5).join(', ')}...`);
 
   state.data = [];
   let recordCount = 0;
   let dateCount = 0;
   
-  // 解析巢狀結構: ems_data/日期/時間/記錄
+  // Parse nested structure: ems_data/date/time/record
   Object.keys(raw).forEach(dateKey => {
     const dayRecords = raw[dateKey];
     dateCount++;
@@ -329,14 +329,14 @@ onValue(dataRef, (snapshot) => {
         if (record && record.timestamp) {
           recordCount++;
           
-          // 轉換 Colab 欄位名稱
+          // Map Colab field names
           state.data.push({
-            "資料時間": record.timestamp.replace('T', ' ').substring(0, 16),
-            "調度前(原始負載)(kW)": Number(record.before_load) || 0,
-            "調節後負載(kW)": Number(record.after_load) || 0,
-            "契約容量 (kW)": Number(record.contract_capacity) || 500,
-            "ESS功率(kW)": Number(record.ess_power) || 0,
-            "SOC(%)": Number(record.soc) || 0,
+            "Timestamp": record.timestamp.replace('T', ' ').substring(0, 16),
+            "Original Load (kW)": Number(record.before_load) || 0,
+            "Adjusted Load (kW)": Number(record.after_load) || 0,
+            "Contract Capacity (kW)": Number(record.contract_capacity) || 500,
+            "ESS Power (kW)": Number(record.ess_power) || 0,
+            "SOC (%)": Number(record.soc) || 0,
             "is_anomaly": Number(record.is_anomaly) || 0
           });
         }
@@ -344,34 +344,34 @@ onValue(dataRef, (snapshot) => {
     }
   });
 
-  log(`✅ 解析完成: ${dateCount} 天, ${recordCount} 筆記錄`, 'success');
+  log(`✅ Parsing complete: ${dateCount} days, ${recordCount} records`, 'success');
 
   if (state.data.length === 0) {
-    log('❌ 錯誤: 解析後無有效數據', 'error');
-    document.getElementById('lastUpdate').innerText = "❌ 數據格式錯誤";
+    log('❌ Error: No valid data after parsing', 'error');
+    document.getElementById('lastUpdate').innerText = "❌ Data format error";
     return;
   }
 
-  state.data.sort((a,b) => new Date(a["資料時間"]) - new Date(b["資料時間"]));
-  log(`🔄 數據已排序,時間範圍: ${state.data[0]["資料時間"]} ~ ${state.data[state.data.length-1]["資料時間"]}`);
+  state.data.sort((a,b) => new Date(a["Timestamp"]) - new Date(b["Timestamp"]));
+  log(`🔄 Data sorted. Time range: ${state.data[0]["Timestamp"]} ~ ${state.data[state.data.length-1]["Timestamp"]}`);
   
   updateLastUpdate();
   initView();
   
-  log(`🎉 初始化完成!`, 'success');
+  log(`🎉 Initialization complete!`, 'success');
   
-  // 3秒後隱藏除錯面板
+  // Hide debug panel after 3 seconds
   setTimeout(() => {
     document.getElementById('debugPanel').style.display = 'none';
   }, 3000);
   
 }, (error) => {
-  log(`❌ Firebase 錯誤: ${error.message}`, 'error');
-  document.getElementById('lastUpdate').innerText = `❌ 連接錯誤: ${error.message}`;
+  log(`❌ Firebase error: ${error.message}`, 'error');
+  document.getElementById('lastUpdate').innerText = `❌ Connection error: ${error.message}`;
 });
 
 function updateLastUpdate() {
-  const time = `✅ 更新時間: ${new Date().toLocaleString('zh-TW')} | 數據筆數: ${state.data.length}`;
+  const time = `✅ Last updated: ${new Date().toLocaleString('en-US')} | Records: ${state.data.length}`;
   document.getElementById('lastUpdate').innerText = time;
 }
 
@@ -386,14 +386,14 @@ function initView() {
   const select = document.getElementById('dateSelect');
   
   const dates = [...new Set(state.data.map(d => {
-    const full = (d["資料時間"]||"").split(" ")[0];
+    const full = (d["Timestamp"]||"").split(" ")[0];
     if (state.mode === 'month') return full.substring(0, 7);
     if (state.mode === 'week') return getWeekIdentifier(new Date(full));
     return full;
   }))].filter(d => d).sort();
 
   if (dates.length === 0) {
-    log('⚠️ 警告: 無可用日期', 'error');
+    log('⚠️ Warning: No available dates', 'error');
     return;
   }
 
@@ -418,12 +418,12 @@ function applyFilter() {
   const val = select.value;
 
   if (state.mode === 'day') {
-    state.filtered = state.data.filter(d => (d["資料時間"]||"").startsWith(val));
+    state.filtered = state.data.filter(d => (d["Timestamp"]||"").startsWith(val));
     state.aggregated = [];
     state.index = 0;
   } else {
     const rawFiltered = state.data.filter(d => {
-       const dStr = (d["資料時間"]||"").split(" ")[0];
+       const dStr = (d["Timestamp"]||"").split(" ")[0];
        if(state.mode === 'week') return getWeekIdentifier(new Date(dStr)) === val;
        return dStr.startsWith(val);
     });
@@ -439,13 +439,13 @@ function applyFilter() {
 function aggregateData(data) {
   const map = {};
   data.forEach(d => {
-    const date = (d["資料時間"]||"").split(" ")[0];
+    const date = (d["Timestamp"]||"").split(" ")[0];
     if(!map[date]) map[date] = { count:0, sumL:0, maxL:0, sumS:0, sumE:0, sumOrig:0, maxOrig:0 };
     
-    const adj = Number(d["調節後負載(kW)"])||0;
-    const orig = Number(d["調度前(原始負載)(kW)"])||0;
-    const s = Number(d["SOC(%)"])||0;
-    const e = Number(d["ESS功率(kW)"])||0;
+    const adj = Number(d["Adjusted Load (kW)"])||0;
+    const orig = Number(d["Original Load (kW)"])||0;
+    const s = Number(d["SOC (%)"])||0;
+    const e = Number(d["ESS Power (kW)"])||0;
     
     map[date].sumL += adj;
     map[date].maxL = Math.max(map[date].maxL, adj);
@@ -482,10 +482,10 @@ function updateStats() {
 
   let avgL, maxL, avgS, avgE;
   if(isDay) {
-    const loads = source.map(d=>Number(d["調節後負載(kW)"])||0);
-    const origs = source.map(d=>Number(d["調度前(原始負載)(kW)"])||0);
-    const socs = source.map(d=>Number(d["SOC(%)"])||0);
-    const esss = source.map(d=>Number(d["ESS功率(kW)"])||0);
+    const loads = source.map(d=>Number(d["Adjusted Load (kW)"])||0);
+    const origs = source.map(d=>Number(d["Original Load (kW)"])||0);
+    const socs = source.map(d=>Number(d["SOC (%)"])||0);
+    const esss = source.map(d=>Number(d["ESS Power (kW)"])||0);
     
     avgL = (loads.reduce((a,b)=>a+b,0)/loads.length).toFixed(2);
     maxL = Math.max(...origs).toFixed(2);
@@ -526,8 +526,8 @@ function updateUI() {
     trend.classList.add('hidden');
   }
 
-  document.getElementById('dateLabel').innerText = isDay ? '日期' : (state.mode === 'week' ? '週次' : '月份');
-  document.getElementById('mainChartTitle').innerText = isDay ? '用電曲線 (調度前後)' : '每日負載分析';
+  document.getElementById('dateLabel').innerText = isDay ? 'Date' : (state.mode === 'week' ? 'Week' : 'Month');
+  document.getElementById('mainChartTitle').innerText = isDay ? 'Power Consumption Curve (Before & After Dispatch)' : 'Daily Load Analysis';
 
   if(isDay && state.filtered.length > 0) {
     updateCard(state.filtered[state.index]);
@@ -540,14 +540,14 @@ function updateCard(d) {
   document.getElementById('progressBar').style.width = `${progress}%`;
   document.getElementById('progressText').innerText = `${state.index + 1} / ${state.filtered.length}`;
 
-  document.getElementById('time').innerText = d["資料時間"];
-  document.getElementById('originalLoad').innerText = d["調度前(原始負載)(kW)"];
-  document.getElementById('adjustedLoad').innerText = d["調節後負載(kW)"];
-  document.getElementById('contract').innerText = d["契約容量 (kW)"];
-  document.getElementById('essPower').innerText = d["ESS功率(kW)"];
-  document.getElementById('soc').innerText = d["SOC(%)"];
+  document.getElementById('time').innerText = d["Timestamp"];
+  document.getElementById('originalLoad').innerText = d["Original Load (kW)"];
+  document.getElementById('adjustedLoad').innerText = d["Adjusted Load (kW)"];
+  document.getElementById('contract').innerText = d["Contract Capacity (kW)"];
+  document.getElementById('essPower').innerText = d["ESS Power (kW)"];
+  document.getElementById('soc').innerText = d["SOC (%)"];
   
-  // 異常提示
+  // Anomaly highlighting
   const cards = document.querySelectorAll('.data-card');
   cards.forEach(c => c.classList.remove('anomaly'));
   
@@ -558,7 +558,7 @@ function updateCard(d) {
     cards.forEach(c => c.classList.add('anomaly'));
     const timeEl = document.getElementById('time');
     if(!timeEl.querySelector('.anomaly-badge')) {
-      timeEl.innerHTML += '<span class="anomaly-badge">異常</span>';
+      timeEl.innerHTML += '<span class="anomaly-badge">Anomaly</span>';
     }
   }
 }
@@ -570,8 +570,8 @@ function updateTrend() {
     return;
   }
   
-  const cur = Number(state.filtered[state.index]["調節後負載(kW)"]);
-  const prev = Number(state.filtered[state.index-1]["調節後負載(kW)"]);
+  const cur = Number(state.filtered[state.index]["Adjusted Load (kW)"]);
+  const prev = Number(state.filtered[state.index-1]["Adjusted Load (kW)"]);
   
   const diff = cur - prev;
   const pct = prev ? ((diff/prev)*100).toFixed(2) : 0;
@@ -610,22 +610,22 @@ function renderCharts() {
   };
 
   if(state.mode === 'day') {
-    const labels = state.filtered.map(d=>d["資料時間"]);
-    const orig = state.filtered.map(d=>Number(d["調度前(原始負載)(kW)"]));
-    const adj = state.filtered.map(d=>Number(d["調節後負載(kW)"]));
-    const contract = state.filtered.map(d=>Number(d["契約容量 (kW)"]));
-    const ess = state.filtered.map(d=>Number(d["ESS功率(kW)"]));
-    const soc = state.filtered.map(d=>Number(d["SOC(%)"]));
+    const labels = state.filtered.map(d=>d["Timestamp"]);
+    const orig = state.filtered.map(d=>Number(d["Original Load (kW)"]));
+    const adj = state.filtered.map(d=>Number(d["Adjusted Load (kW)"]));
+    const contract = state.filtered.map(d=>Number(d["Contract Capacity (kW)"]));
+    const ess = state.filtered.map(d=>Number(d["ESS Power (kW)"]));
+    const soc = state.filtered.map(d=>Number(d["SOC (%)"]));
     
-    // 標記異常點
+    // Mark anomaly points
     const anomalyColors = state.filtered.map(d => d.is_anomaly === 1 ? 'rgba(231, 76, 60, 0.8)' : colors.secondary);
 
     state.charts.c1 = new Chart(ctx1, {
       type: 'line',
       data: { labels, datasets: [
-        { label: '原始負載', data: orig, borderColor: colors.orig, pointRadius:0, borderWidth: 2 },
+        { label: 'Original Load', data: orig, borderColor: colors.orig, pointRadius:0, borderWidth: 2 },
         { 
-          label: '調節後負載', 
+          label: 'Adjusted Load', 
           data: adj, 
           borderColor: colors.secondary, 
           backgroundColor: anomalyColors,
@@ -633,7 +633,7 @@ function renderCharts() {
           pointStyle: 'circle',
           borderWidth: 2.5 
         },
-        { label: '契約容量', data: contract, borderColor: colors.contract, borderDash:[5,5], pointRadius:0, borderWidth: 2 }
+        { label: 'Contract Capacity', data: contract, borderColor: colors.contract, borderDash:[5,5], pointRadius:0, borderWidth: 2 }
       ]},
       options: commonOpt
     });
@@ -641,14 +641,14 @@ function renderCharts() {
     state.charts.c2 = new Chart(ctx2, {
       type: 'line',
       data: { labels, datasets: [
-        { label: 'ESS功率', data: ess, borderColor: colors.ess, pointRadius:0, borderWidth: 2 },
-        { label: 'SOC(%)', data: soc, borderColor: colors.soc, yAxisID: 'y1', pointRadius:0, borderWidth: 2 }
+        { label: 'ESS Power', data: ess, borderColor: colors.ess, pointRadius:0, borderWidth: 2 },
+        { label: 'SOC (%)', data: soc, borderColor: colors.soc, yAxisID: 'y1', pointRadius:0, borderWidth: 2 }
       ]},
       options: { 
         ...commonOpt, 
         scales: { 
           y: {
-            title: { display: true, text: 'ESS功率 (kW)' },
+            title: { display: true, text: 'ESS Power (kW)' },
             grid: { color: (context) => context.tick.value === 0 ? '#5a6c7d' : '#e9ecef' }
           },
           y1: { 
@@ -665,14 +665,14 @@ function renderCharts() {
     state.charts.c1 = new Chart(ctx1, {
       type: 'bar',
       data: { labels, datasets: [
-        { label: '平均負載', data: state.aggregated.map(d=>d.avgLoad), backgroundColor: colors.primary },
-        { label: '尖峰負載', data: state.aggregated.map(d=>d.peakLoad), backgroundColor: colors.secondary }
+        { label: 'Average Load', data: state.aggregated.map(d=>d.avgLoad), backgroundColor: colors.primary },
+        { label: 'Peak Load', data: state.aggregated.map(d=>d.peakLoad), backgroundColor: colors.secondary }
       ]},
       options: commonOpt
     });
     state.charts.c2 = new Chart(ctx2, {
       type: 'bar',
-      data: { labels, datasets: [{ label: '平均 SOC (%)', data: state.aggregated.map(d=>d.avgSoc), backgroundColor: colors.soc }]},
+      data: { labels, datasets: [{ label: 'Average SOC (%)', data: state.aggregated.map(d=>d.avgSoc), backgroundColor: colors.soc }]},
       options: { ...commonOpt, scales: { y: { min:0, max:100 } } }
     });
   }
