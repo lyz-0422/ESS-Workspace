@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ESS + PV Energy Storage Monitoring</title>
+<title>ESS + PV 儲能系統監控</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.min.js"></script>
@@ -17,7 +17,7 @@ body {
   padding: 40px 20px;
   min-height: 100vh;
   position: relative;
-  font-size: 18px;
+  font-size: 18px; /* 基礎字體放大 */
 }
 body::before, body::after {
   content: ''; position: fixed; border-radius: 50%; pointer-events: none;
@@ -40,15 +40,15 @@ body::after {
   border-left: 4px solid #7a8ba0;
 }
 .header h2 {
-  margin: 0 0 8px 0; color: #2c3e50; font-size: 36px;
+  margin: 0 0 8px 0; color: #2c3e50; font-size: 36px; /* 28→36 */
   font-weight: 600; font-family: 'Noto Serif TC', serif;
 }
-.header-subtitle { font-size: 18px; color: #95a5a6; font-weight: 300; }
+.header-subtitle { font-size: 18px; color: #95a5a6; font-weight: 300; } /* 14→18 */
 
 /* ── Debug ── */
 .debug-panel {
   background: #f8f9fa; padding: 15px 20px; border-radius: 12px; margin-bottom: 20px;
-  border-left: 3px solid #e74c3c; font-family: monospace; font-size: 16px;
+  border-left: 3px solid #e74c3c; font-family: monospace; font-size: 16px; /* 12→16 */
   max-height: 200px; overflow-y: auto;
 }
 .debug-title { font-weight: 600; color: #e74c3c; margin-bottom: 8px; }
@@ -60,12 +60,12 @@ body::after {
   box-shadow: 0 2px 20px rgba(0,0,0,0.06); margin-bottom: 20px;
   display: flex; align-items: center; gap: 15px; flex-wrap: wrap;
 }
-.granularity-label { font-size: 18px; font-weight: 500; color: #5a6c7d; display: flex; align-items: center; gap: 8px; }
+.granularity-label { font-size: 18px; font-weight: 500; color: #5a6c7d; display: flex; align-items: center; gap: 8px; } /* 14→18 */
 .granularity-buttons { display: flex; gap: 10px; }
 .btn-granularity {
   padding: 10px 24px; border: 2px solid #e9ecef; border-radius: 12px;
   background: white; color: #5a6c7d; cursor: pointer; font-weight: 500;
-  font-size: 18px; transition: all 0.3s ease; font-family: 'Noto Sans TC', sans-serif;
+  font-size: 18px; transition: all 0.3s ease; font-family: 'Noto Sans TC', sans-serif; /* 14→18 */
 }
 .btn-granularity:hover  { background: #f8f9fa; border-color: #7a8ba0; color: #2c3e50; transform: translateY(-2px); }
 .btn-granularity.active { background: #7a8ba0; color: white; border-color: #7a8ba0; box-shadow: 0 4px 12px rgba(122,139,160,0.3); }
@@ -80,19 +80,19 @@ body::after {
   display: flex; align-items: center; gap: 12px; padding: 10px 18px;
   background: #f8f9fa; border-radius: 12px; border: 1px solid #e9ecef;
 }
-.date-icon  { font-size: 24px; color: #7a8ba0; }
-.date-group label { font-size: 18px; font-weight: 500; color: #5a6c7d; margin: 0; }
+.date-icon  { font-size: 24px; color: #7a8ba0; } /* 20→24 */
+.date-group label { font-size: 18px; font-weight: 500; color: #5a6c7d; margin: 0; } /* 14→18 */
 .nav-controls { display: flex; gap: 12px; align-items: center; flex: 1; }
 .progress-indicator { flex: 1; min-width: 200px; }
 .progress-bar-container { width: 100%; height: 6px; background: #e9ecef; border-radius: 3px; overflow: hidden; }
 .progress-bar-fill { height: 100%; background: linear-gradient(90deg, #7a8ba0 0%, #95aac2 100%); border-radius: 3px; transition: width 0.3s ease; }
-.progress-text { font-size: 16px; color: #95a5a6; margin-top: 5px; text-align: center; }
+.progress-text { font-size: 16px; color: #95a5a6; margin-top: 5px; text-align: center; } /* 12→16 */
 
 /* ── Buttons ── */
 button {
   padding: 10px 20px; border: 1px solid #d1d8dd; border-radius: 10px;
   background: white; color: #5a6c7d; cursor: pointer; font-weight: 500;
-  font-size: 18px; transition: all 0.3s ease; font-family: 'Noto Sans TC', sans-serif;
+  font-size: 18px; transition: all 0.3s ease; font-family: 'Noto Sans TC', sans-serif; /* 14→18 */
 }
 button:hover:not(:disabled) { background: #f8f9fa; border-color: #7a8ba0; color: #2c3e50; transform: translateY(-1px); }
 button:disabled { background: #f8f9fa; color: #cbd5e0; border-color: #e9ecef; cursor: not-allowed; }
@@ -101,7 +101,7 @@ button:disabled { background: #f8f9fa; color: #cbd5e0; border-color: #e9ecef; cu
 
 select {
   padding: 8px 14px; border-radius: 10px; border: 1px solid #d1d8dd;
-  font-size: 18px; background: white; color: #5a6c7d; cursor: pointer;
+  font-size: 18px; background: white; color: #5a6c7d; cursor: pointer; /* 14→18 */
   transition: all 0.3s ease; font-family: 'Noto Sans TC', sans-serif;
 }
 select:hover { border-color: #7a8ba0; }
@@ -121,8 +121,8 @@ select:focus { outline: none; border-color: #7a8ba0; box-shadow: 0 0 0 3px rgba(
 .stat-card:nth-child(3) { border-top-color: #c2cbd5; }
 .stat-card:nth-child(4) { border-top-color: #95aac2; }
 .stat-card:hover { transform: translateY(-4px); box-shadow: 0 4px 25px rgba(0,0,0,0.1); }
-.stat-label { font-size: 17px; color: #95a5a6; font-weight: 400; margin-bottom: 10px; }
-.stat-value { font-size: 32px; font-weight: 600; color: #2c3e50; font-family: 'Noto Serif TC', serif; }
+.stat-label { font-size: 17px; color: #95a5a6; font-weight: 400; margin-bottom: 10px; } /* 13→17 */
+.stat-value { font-size: 32px; font-weight: 600; color: #2c3e50; font-family: 'Noto Serif TC', serif; } /* 26→32 */
 
 /* ── Data Cards ── */
 .data-cards {
@@ -136,17 +136,17 @@ select:focus { outline: none; border-color: #7a8ba0; box-shadow: 0 0 0 3px rgba(
 }
 .data-card:hover { transform: translateY(-3px); box-shadow: 0 4px 20px rgba(0,0,0,0.08); border-left-color: #7a8ba0; }
 .data-card.anomaly { border-left-color: #e74c3c; background: #fff5f5; }
-.data-label { font-size: 15px; color: #95a5a6; font-weight: 400; display: flex; align-items: center; gap: 6px; margin-bottom: 8px; }
-.dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
-.data-value { font-size: 22px; font-weight: 600; color: #2c3e50; font-family: 'Noto Serif TC', serif; }
+.data-label { font-size: 15px; color: #95a5a6; font-weight: 400; display: flex; align-items: center; gap: 6px; margin-bottom: 8px; } /* 12→15 */
+.dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; } /* 6→8 */
+.data-value { font-size: 22px; font-weight: 600; color: #2c3e50; font-family: 'Noto Serif TC', serif; } /* 18→22 */
 .anomaly-badge {
   display: inline-block; padding: 2px 8px; background: #e74c3c; color: white;
-  border-radius: 8px; font-size: 13px; margin-left: 6px; font-weight: 600;
+  border-radius: 8px; font-size: 13px; margin-left: 6px; font-weight: 600; /* 10→13 */
 }
 .anomaly-type-badge {
   position: absolute; top: 8px; right: 8px;
   padding: 2px 8px; background: #e67e22; color: white;
-  border-radius: 8px; font-size: 13px; font-weight: 600;
+  border-radius: 8px; font-size: 13px; font-weight: 600; /* 10→13 */
   max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
 
@@ -159,11 +159,11 @@ select:focus { outline: none; border-color: #7a8ba0; box-shadow: 0 0 0 3px rgba(
   display: flex; justify-content: space-between; align-items: flex-start;
   margin-bottom: 25px; padding-bottom: 15px; border-bottom: 2px solid #f1f3f5;
 }
-.chart-title { font-size: 22px; font-weight: 600; color: #2c3e50; font-family: 'Noto Serif TC', serif; }
-.chart-subtitle { font-size: 16px; color: #95a5a6; margin-top: 4px; }
+.chart-title { font-size: 22px; font-weight: 600; color: #2c3e50; font-family: 'Noto Serif TC', serif; } /* 18→22 */
+.chart-subtitle { font-size: 16px; color: #95a5a6; margin-top: 4px; } /* 12→16 */
 .legend-row { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
-.legend-item { display: flex; align-items: center; gap: 6px; font-size: 16px; color: #5a6c7d; }
-.legend-dot  { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+.legend-item { display: flex; align-items: center; gap: 6px; font-size: 16px; color: #5a6c7d; } /* 12→16 */
+.legend-dot  { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; } /* 10→12 */
 
 /* ── Trend ── */
 .trend-indicator {
@@ -171,9 +171,9 @@ select:focus { outline: none; border-color: #7a8ba0; box-shadow: 0 0 0 3px rgba(
   padding: 20px 25px; border-radius: 16px; box-shadow: 0 4px 25px rgba(0,0,0,0.1);
   min-width: 200px; z-index: 1000;
 }
-.trend-title { font-size: 16px; color: #95a5a6; font-weight: 500; margin-bottom: 12px; text-transform: uppercase; }
-.trend-value { font-size: 28px; font-weight: 600; color: #2c3e50; font-family: 'Noto Serif TC', serif; }
-.trend-change { font-size: 17px; margin-top: 8px; }
+.trend-title { font-size: 16px; color: #95a5a6; font-weight: 500; margin-bottom: 12px; text-transform: uppercase; } /* 12→16 */
+.trend-value { font-size: 28px; font-weight: 600; color: #2c3e50; font-family: 'Noto Serif TC', serif; } /* 24→28 */
+.trend-change { font-size: 17px; margin-top: 8px; } /* 13→17 */
 .trend-up   { color: #27ae60; }
 .trend-down { color: #e74c3c; }
 .trend-flat { color: #95a5a6; }
@@ -203,23 +203,23 @@ select:focus { outline: none; border-color: #7a8ba0; box-shadow: 0 0 0 3px rgba(
 
   <!-- Header -->
   <div class="header fade-in">
-    <h2>ESS + PV Energy Storage Monitoring Dashboard</h2>
-    <div class="header-subtitle" id="lastUpdate">Connecting to Firebase...</div>
+    <h2>ESS + PV 儲能系統監控儀表板</h2>
+    <div class="header-subtitle" id="lastUpdate">正在連接 Firebase...</div>
   </div>
 
   <!-- Debug -->
   <div class="debug-panel fade-in" id="debugPanel">
-    <div class="debug-title">🔍 System Debug Info</div>
+    <div class="debug-title">🔍 系統除錯資訊</div>
     <div id="debugLog"></div>
   </div>
 
   <!-- Granularity -->
   <div class="time-granularity fade-in">
-    <div class="granularity-label"><span>📊</span>Analysis Granularity</div>
+    <div class="granularity-label"><span>📊</span>分析粒度</div>
     <div class="granularity-buttons">
-      <button class="btn-granularity active" onclick="setMode('day',this)">Today</button>
-      <button class="btn-granularity" onclick="setMode('week',this)">This Week</button>
-      <button class="btn-granularity" onclick="setMode('month',this)">This Month</button>
+      <button class="btn-granularity active" onclick="setMode('day',this)">本日</button>
+      <button class="btn-granularity" onclick="setMode('week',this)">本週</button>
+      <button class="btn-granularity" onclick="setMode('month',this)">本月</button>
     </div>
   </div>
 
@@ -227,57 +227,57 @@ select:focus { outline: none; border-color: #7a8ba0; box-shadow: 0 0 0 3px rgba(
   <div class="timeline-nav fade-in">
     <div class="date-group">
       <span class="date-icon">📅</span>
-      <label id="dateLabel">Date</label>
+      <label id="dateLabel">日期</label>
       <select id="dateSelect"></select>
     </div>
     <div class="nav-controls" id="navControls">
-      <button id="prev">← Previous</button>
-      <button id="next">Next →</button>
+      <button id="prev">← 上一筆</button>
+      <button id="next">下一筆 →</button>
       <div class="progress-indicator">
         <div class="progress-bar-container"><div id="progressBar" class="progress-bar-fill" style="width:0%"></div></div>
         <div id="progressText" class="progress-text">0 / 0</div>
       </div>
     </div>
-    <button onclick="resetZoom()" class="btn-primary">Reset View</button>
+    <button onclick="resetZoom()" class="btn-primary">重置視圖</button>
   </div>
 
   <!-- Stats -->
   <div class="stats-grid fade-in">
-    <div class="stat-card"><div class="stat-label">Avg Raw Load</div><div id="sAvgOrig" class="stat-value">--</div></div>
-    <div class="stat-card"><div class="stat-label">Peak Raw Load</div><div id="sMaxOrig" class="stat-value">--</div></div>
-    <div class="stat-card"><div class="stat-label">Avg SOC</div>   <div id="sAvgSOC"  class="stat-value">--</div></div>
-    <div class="stat-card"><div class="stat-label">Avg ESS Power</div><div id="sAvgESS" class="stat-value">--</div></div>
+    <div class="stat-card"><div class="stat-label">平均原始負載</div><div id="sAvgOrig" class="stat-value">--</div></div>
+    <div class="stat-card"><div class="stat-label">尖峰原始負載</div><div id="sMaxOrig" class="stat-value">--</div></div>
+    <div class="stat-card"><div class="stat-label">平均 SOC</div>   <div id="sAvgSOC"  class="stat-value">--</div></div>
+    <div class="stat-card"><div class="stat-label">平均 ESS 功率</div><div id="sAvgESS" class="stat-value">--</div></div>
   </div>
 
-  <!-- Data Cards Row 1: Main Operating Data -->
+  <!-- Data Cards Row 1：主要運行數據 -->
   <div class="data-cards fade-in" id="dataCards1">
     <div class="data-card">
-      <div class="data-label"><span class="dot" style="background:#546e7a"></span>Timestamp</div>
+      <div class="data-label"><span class="dot" style="background:#546e7a"></span>時間</div>
       <div id="dTime" class="data-value" style="font-size:17px">--</div>
     </div>
     <div class="data-card">
-      <div class="data-label"><span class="dot" style="background:#2ecc71"></span>Raw Load (kW)</div>
+      <div class="data-label"><span class="dot" style="background:#2ecc71"></span>原始負載 (kW)</div>
       <div id="dBeforeLoad" class="data-value">--</div>
     </div>
     <div class="data-card">
-      <div class="data-label"><span class="dot" style="background:#fbc02d"></span>Adjusted Load (kW)</div>
+      <div class="data-label"><span class="dot" style="background:#fbc02d"></span>調節後負載 (kW)</div>
       <div id="dAfterLoad" class="data-value">--</div>
     </div>
     <div class="data-card">
-      <div class="data-label"><span class="dot" style="background:#ff4757"></span>Contract Capacity (kW)</div>
+      <div class="data-label"><span class="dot" style="background:#ff4757"></span>契約容量 (kW)</div>
       <div id="dContract" class="data-value">--</div>
     </div>
     <div class="data-card">
-      <div class="data-label"><span class="dot" style="background:#00bcd4"></span>ESS Power (kW)</div>
+      <div class="data-label"><span class="dot" style="background:#00bcd4"></span>ESS 功率 (kW)</div>
       <div id="dEssPower" class="data-value">--</div>
     </div>
     <div class="data-card">
-      <div class="data-label"><span class="dot" style="background:#e74c3c"></span>Over-Contract (kW)</div>
+      <div class="data-label"><span class="dot" style="background:#e74c3c"></span>超約量 (kW)</div>
       <div id="dOverContract" class="data-value">--</div>
     </div>
   </div>
 
-  <!-- Data Cards Row 2: Battery + PV + Anomaly -->
+  <!-- Data Cards Row 2：電池 + PV + 異常 -->
   <div class="data-cards fade-in" id="dataCards2">
     <div class="data-card">
       <div class="data-label"><span class="dot" style="background:#ffd93d"></span>SOC (%)</div>
@@ -296,56 +296,56 @@ select:focus { outline: none; border-color: #7a8ba0; box-shadow: 0 0 0 3px rgba(
       <div id="dInvEff" class="data-value">--</div>
     </div>
     <div class="data-card">
-      <div class="data-label"><span class="dot" style="background:#f0883e"></span>PV Theoretical (kW)</div>
+      <div class="data-label"><span class="dot" style="background:#f0883e"></span>PV 理論 (kW)</div>
       <div id="dPvTheory" class="data-value">--</div>
     </div>
     <div class="data-card" id="dAnomalyCard">
-      <div class="data-label"><span class="dot" style="background:#e74c3c"></span>Anomaly Status</div>
+      <div class="data-label"><span class="dot" style="background:#e74c3c"></span>異常狀態</div>
       <div id="dAnomalyVal" class="data-value">--</div>
     </div>
   </div>
 
-  <!-- Chart 1: Load Curve -->
+  <!-- Chart 1：負載曲線 -->
   <div class="chart-container fade-in">
     <div class="chart-header">
       <div>
-        <div class="chart-title" id="chart1Title">Load Curve (Pre/Post Dispatch + Contract Capacity)</div>
-        <div class="chart-subtitle">Anomaly timestamps are marked with colored dots on the adjusted load curve</div>
+        <div class="chart-title" id="chart1Title">用電曲線（調度前後 + 契約容量）</div>
+        <div class="chart-subtitle">異常時間點以彩色圓點標示於調節後負載曲線上</div>
       </div>
       <div class="legend-row">
-        <div class="legend-item"><span class="legend-dot" style="background:#2ecc71"></span>Raw Load</div>
-        <div class="legend-item"><span class="legend-dot" style="background:#fbc02d"></span>Adjusted Load</div>
-        <div class="legend-item"><span class="legend-dot" style="background:#ff4757"></span>Contract Capacity</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#2ecc71"></span>原始負載</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#fbc02d"></span>調節後負載</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#ff4757"></span>契約容量</div>
       </div>
     </div>
     <canvas id="chart1" height="100"></canvas>
   </div>
 
-  <!-- Chart 2: ESS + SOC -->
+  <!-- Chart 2：ESS + SOC -->
   <div class="chart-container fade-in">
     <div class="chart-header">
       <div>
-        <div class="chart-title">ESS Storage System Status (Power + SOC)</div>
-        <div class="chart-subtitle">Left axis: ESS Power (kW) &nbsp;|&nbsp; Right axis: SOC (%)</div>
+        <div class="chart-title">ESS 儲能系統狀態（功率 + SOC）</div>
+        <div class="chart-subtitle">左軸：ESS 功率 (kW)　右軸：SOC (%)</div>
       </div>
       <div class="legend-row">
-        <div class="legend-item"><span class="legend-dot" style="background:#00bcd4"></span>ESS Power</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#00bcd4"></span>ESS 功率</div>
         <div class="legend-item"><span class="legend-dot" style="background:#ffd93d"></span>SOC</div>
       </div>
     </div>
     <canvas id="chart2" height="100"></canvas>
   </div>
 
-  <!-- Chart 3: PV + SOH -->
+  <!-- Chart 3：PV + SOH -->
   <div class="chart-container fade-in">
     <div class="chart-header">
       <div>
-        <div class="chart-title">Solar Generation + Battery Health (PV + SOH)</div>
-        <div class="chart-subtitle">Left axis: PV Output (kW) &nbsp;|&nbsp; Right axis: SOH (%)</div>
+        <div class="chart-title">太陽能發電 + 電池健康（PV + SOH）</div>
+        <div class="chart-subtitle">左軸：PV 出力 (kW)　右軸：SOH (%)</div>
       </div>
       <div class="legend-row">
-        <div class="legend-item"><span class="legend-dot" style="background:#f0883e; outline:1px dashed #bbb; outline-offset:2px"></span>PV Theoretical</div>
-        <div class="legend-item"><span class="legend-dot" style="background:#27ae60"></span>PV Actual</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#f0883e; outline:1px dashed #bbb; outline-offset:2px"></span>PV 理論</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#27ae60"></span>PV 實際</div>
         <div class="legend-item"><span class="legend-dot" style="background:#a29bfe"></span>SOH</div>
       </div>
     </div>
@@ -354,7 +354,7 @@ select:focus { outline: none; border-color: #7a8ba0; box-shadow: 0 0 0 3px rgba(
 
   <!-- Trend -->
   <div class="trend-indicator fade-in" id="trendIndicator">
-    <div class="trend-title">Current Adjusted Load Trend</div>
+    <div class="trend-title">當前調節後負載趨勢</div>
     <div class="trend-value" id="trendValue">--</div>
     <div class="trend-change" id="trendChange"><span class="trend-flat">--</span></div>
   </div>
@@ -390,25 +390,25 @@ const ANOMALY_COLORS = {
 Chart.defaults.color       = '#5a6c7d';
 Chart.defaults.borderColor = '#e9ecef';
 Chart.defaults.font.family = "'Noto Sans TC', sans-serif";
-Chart.defaults.font.size   = 15;
+Chart.defaults.font.size   = 15; /* 圖表內字體放大 */
 
 // ── Debug ──
 function log(msg, type='info') {
   const el    = document.getElementById('debugLog');
   const color = type==='ok' ? '#27ae60' : type==='err' ? '#e74c3c' : '#5a6c7d';
-  const ts    = new Date().toLocaleTimeString('en-US');
+  const ts    = new Date().toLocaleTimeString('zh-TW');
   el.innerHTML += `<div class="debug-item" style="color:${color}">[${ts}] ${msg}</div>`;
   el.scrollTop  = el.scrollHeight;
 }
 
-log('🔌 Connecting to Firebase...');
+log('🔌 連接 Firebase...');
 const app = initializeApp(firebaseConfig);
 const db  = getDatabase(app);
 
 onValue(ref(db, '/ems_data'), snap => {
-  log('📡 Data update received');
+  log('📡 收到數據更新');
   const raw = snap.val();
-  if (!raw) { log('❌ No data in Firebase. Please run the Colab upload first.', 'err'); return; }
+  if (!raw) { log('❌ Firebase 無數據，請先執行 Colab 上傳', 'err'); return; }
 
   S.data = [];
   let cnt = 0;
@@ -440,13 +440,13 @@ onValue(ref(db, '/ems_data'), snap => {
   });
 
   S.data.sort((a,b) => new Date(a.ts) - new Date(b.ts));
-  log(`✅ Parsing complete: ${cnt} records, ${Object.keys(raw).length} days`, 'ok');
+  log(`✅ 解析完成：${cnt} 筆，${Object.keys(raw).length} 天`, 'ok');
   document.getElementById('lastUpdate').textContent =
-    `✅ Last updated: ${new Date().toLocaleString('en-US')} | Records: ${cnt}`;
+    `✅ 更新時間: ${new Date().toLocaleString('zh-TW')} | 數據筆數: ${cnt}`;
   setTimeout(() => document.getElementById('debugPanel').style.display='none', 3000);
   initView();
 
-}, err => { log(`❌ Connection error: ${err.message}`, 'err'); });
+}, err => { log(`❌ 連接錯誤: ${err.message}`, 'err'); });
 
 // ── Mode ──
 window.setMode = (mode, btn) => {
@@ -470,7 +470,7 @@ function initView() {
   sel.value     = dates.includes(prev) ? prev : dates.at(-1);
   sel.onchange  = applyFilter;
   document.getElementById('dateLabel').textContent =
-    S.mode==='day' ? 'Date' : S.mode==='week' ? 'Week' : 'Month';
+    S.mode==='day' ? '日期' : S.mode==='week' ? '週次' : '月份';
   applyFilter();
 }
 
@@ -542,7 +542,7 @@ function updateUI() {
     document.getElementById(id).classList.toggle('hidden',!isDay);
   });
   document.getElementById('chart1Title').textContent =
-    isDay ? 'Load Curve (Pre/Post Dispatch + Contract Capacity)' : 'Daily Avg / Peak Load';
+    isDay ? '用電曲線（調度前後 + 契約容量）' : '每日平均 / 尖峰負載';
   if (isDay && S.filtered.length) { updateCard(); updateTrend(); }
 }
 
@@ -571,10 +571,10 @@ function updateCard() {
 
   if (d.is_anomaly===1) {
     document.querySelectorAll('.data-card').forEach(c=>c.classList.add('anomaly'));
-    aVal.textContent = 'Anomaly';
+    aVal.textContent = '異常';
     aVal.insertAdjacentHTML('afterend',`<span class="anomaly-type-badge">${d.anomaly_type}</span>`);
   } else {
-    aVal.textContent = 'Normal';
+    aVal.textContent = '正常';
   }
 }
 
@@ -633,9 +633,9 @@ function renderDay() {
   S.charts.c1 = new Chart(document.getElementById('chart1'),{
     type:'line',
     data:{labels,datasets:[
-      {label:'Raw Load',        data:rows.map(d=>d.before_load),       borderColor:'#2ecc71',pointRadius:0,borderWidth:1.8,fill:false},
-      {label:'Adjusted Load',   data:rows.map(d=>d.after_load),        borderColor:'#fbc02d',borderWidth:2.5,fill:false,pointRadius:ptRad,pointBackgroundColor:ptClr,pointBorderColor:ptClr},
-      {label:'Contract Capacity',data:rows.map(d=>d.contract_capacity),borderColor:'#ff4757',borderDash:[6,4],pointRadius:0,borderWidth:1.5,fill:false},
+      {label:'原始負載',   data:rows.map(d=>d.before_load),       borderColor:'#2ecc71',pointRadius:0,borderWidth:1.8,fill:false},
+      {label:'調節後負載', data:rows.map(d=>d.after_load),        borderColor:'#fbc02d',borderWidth:2.5,fill:false,pointRadius:ptRad,pointBackgroundColor:ptClr,pointBorderColor:ptClr},
+      {label:'契約容量',   data:rows.map(d=>d.contract_capacity), borderColor:'#ff4757',borderDash:[6,4],pointRadius:0,borderWidth:1.5,fill:false},
     ]},
     options:{...COMMON,scales:{x:{ticks:{font:{size:14}}},y:{ticks:{font:{size:14}}}}}
   });
@@ -643,12 +643,12 @@ function renderDay() {
   S.charts.c2 = new Chart(document.getElementById('chart2'),{
     type:'line',
     data:{labels,datasets:[
-      {label:'ESS Power',yAxisID:'y', data:rows.map(d=>d.ess_power),borderColor:'#00bcd4',pointRadius:0,borderWidth:1.8,fill:false},
-      {label:'SOC',      yAxisID:'y1',data:rows.map(d=>d.soc),      borderColor:'#ffd93d',pointRadius:0,borderWidth:1.8,fill:false},
+      {label:'ESS功率',yAxisID:'y', data:rows.map(d=>d.ess_power),borderColor:'#00bcd4',pointRadius:0,borderWidth:1.8,fill:false},
+      {label:'SOC',   yAxisID:'y1',data:rows.map(d=>d.soc),      borderColor:'#ffd93d',pointRadius:0,borderWidth:1.8,fill:false},
     ]},
     options:{...COMMON,scales:{
       x: {ticks:{font:{size:14}}},
-      y: {ticks:{font:{size:14}},title:{display:true,text:'ESS Power (kW)',font:{size:15}},grid:{color:ctx=>ctx.tick.value===0?'#5a6c7d55':'#e9ecef'}},
+      y: {ticks:{font:{size:14}},title:{display:true,text:'ESS 功率 (kW)',font:{size:15}},grid:{color:ctx=>ctx.tick.value===0?'#5a6c7d55':'#e9ecef'}},
       y1:{ticks:{font:{size:14}},position:'right',min:0,max:100,title:{display:true,text:'SOC (%)',font:{size:15}}}
     }}
   });
@@ -656,13 +656,13 @@ function renderDay() {
   S.charts.c3 = new Chart(document.getElementById('chart3'),{
     type:'line',
     data:{labels,datasets:[
-      {label:'PV Theoretical',yAxisID:'y', data:rows.map(d=>d.pv_theory),borderColor:'#f0883e',borderDash:[5,3],pointRadius:0,borderWidth:1.5,fill:false},
-      {label:'PV Actual',     yAxisID:'y', data:rows.map(d=>d.pv_actual),borderColor:'#27ae60',              pointRadius:0,borderWidth:1.8,fill:false},
-      {label:'SOH',           yAxisID:'y1',data:rows.map(d=>d.soh),      borderColor:'#a29bfe',              pointRadius:0,borderWidth:1.8,fill:false},
+      {label:'PV理論',yAxisID:'y', data:rows.map(d=>d.pv_theory),borderColor:'#f0883e',borderDash:[5,3],pointRadius:0,borderWidth:1.5,fill:false},
+      {label:'PV實際',yAxisID:'y', data:rows.map(d=>d.pv_actual),borderColor:'#27ae60',              pointRadius:0,borderWidth:1.8,fill:false},
+      {label:'SOH',   yAxisID:'y1',data:rows.map(d=>d.soh),      borderColor:'#a29bfe',              pointRadius:0,borderWidth:1.8,fill:false},
     ]},
     options:{...COMMON,scales:{
       x: {ticks:{font:{size:14}}},
-      y: {ticks:{font:{size:14}},title:{display:true,text:'PV Output (kW)',font:{size:15}}},
+      y: {ticks:{font:{size:14}},title:{display:true,text:'PV 出力 (kW)',font:{size:15}}},
       y1:{ticks:{font:{size:14}},position:'right',min:0,max:100,title:{display:true,text:'SOH (%)',font:{size:15}}}
     }}
   });
@@ -671,18 +671,18 @@ function renderDay() {
 function renderAgg() {
   const labels = S.agg.map(d=>d.date);
   S.charts.c1 = new Chart(document.getElementById('chart1'),{type:'bar',data:{labels,datasets:[
-    {label:'Avg Raw Load', data:S.agg.map(d=>d.avgBefore), backgroundColor:'rgba(46,204,113,0.6)',borderColor:'#2ecc71',borderWidth:1},
-    {label:'Peak Raw Load',data:S.agg.map(d=>d.peakBefore),backgroundColor:'rgba(255,71,87,0.5)', borderColor:'#ff4757',borderWidth:1},
+    {label:'平均原始負載',data:S.agg.map(d=>d.avgBefore), backgroundColor:'rgba(46,204,113,0.6)',borderColor:'#2ecc71',borderWidth:1},
+    {label:'尖峰原始負載',data:S.agg.map(d=>d.peakBefore),backgroundColor:'rgba(255,71,87,0.5)', borderColor:'#ff4757',borderWidth:1},
   ]},options:{...COMMON,scales:{x:{ticks:{font:{size:14}}},y:{ticks:{font:{size:14}}}}}});
 
   S.charts.c2 = new Chart(document.getElementById('chart2'),{type:'bar',data:{labels,datasets:[
-    {label:'Avg ESS',yAxisID:'y', data:S.agg.map(d=>d.avgESS),backgroundColor:'rgba(0,188,212,0.6)', borderColor:'#00bcd4',borderWidth:1},
-    {label:'Avg SOC',yAxisID:'y1',data:S.agg.map(d=>d.avgSOC),backgroundColor:'rgba(255,217,61,0.6)',borderColor:'#ffd93d',borderWidth:1},
+    {label:'平均ESS',yAxisID:'y', data:S.agg.map(d=>d.avgESS),backgroundColor:'rgba(0,188,212,0.6)', borderColor:'#00bcd4',borderWidth:1},
+    {label:'平均SOC',yAxisID:'y1',data:S.agg.map(d=>d.avgSOC),backgroundColor:'rgba(255,217,61,0.6)',borderColor:'#ffd93d',borderWidth:1},
   ]},options:{...COMMON,scales:{x:{ticks:{font:{size:14}}},y:{ticks:{font:{size:14}}},y1:{ticks:{font:{size:14}},position:'right',min:0,max:100}}}});
 
   S.charts.c3 = new Chart(document.getElementById('chart3'),{type:'bar',data:{labels,datasets:[
-    {label:'Avg PV Actual',yAxisID:'y', data:S.agg.map(d=>d.avgPvA),backgroundColor:'rgba(39,174,96,0.6)',  borderColor:'#27ae60',borderWidth:1},
-    {label:'Avg SOH',      yAxisID:'y1',data:S.agg.map(d=>d.avgSOH),backgroundColor:'rgba(162,155,254,0.6)',borderColor:'#a29bfe',borderWidth:1},
+    {label:'平均PV實際',yAxisID:'y', data:S.agg.map(d=>d.avgPvA),backgroundColor:'rgba(39,174,96,0.6)',  borderColor:'#27ae60',borderWidth:1},
+    {label:'平均SOH',   yAxisID:'y1',data:S.agg.map(d=>d.avgSOH),backgroundColor:'rgba(162,155,254,0.6)',borderColor:'#a29bfe',borderWidth:1},
   ]},options:{...COMMON,scales:{x:{ticks:{font:{size:14}}},y:{ticks:{font:{size:14}}},y1:{ticks:{font:{size:14}},position:'right',min:0,max:100}}}});
 }
 
