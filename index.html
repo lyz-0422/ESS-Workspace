@@ -364,6 +364,7 @@ select:focus { outline: none; border-color: #7a8ba0; box-shadow: 0 0 0 3px rgba(
 <script type="module">
 import { initializeApp }      from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
 import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js";
+import { initializeAppCheck, ReCaptchaV3Provider } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app-check.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAnt-ZwVRwF3bx6iWKQivRqODubum8N5Og",
@@ -405,6 +406,14 @@ function log(msg, type='info') {
 log('🔌 連接 Firebase...');
 const app = initializeApp(firebaseConfig);
 const db  = getDatabase(app);
+
+// --- 【新增這段：初始化 App Check】 ---
+// 注意：你需要去 Google reCAPTCHA 申請一個 Site Key (v3)
+const appCheck = initializeAppCheck(app, {
+  // 填入第一串：網站金鑰 (Site Key)
+  provider: new ReCaptchaV3Provider('6LcXtcksAAAAAPDSveR2n7NX5JTfwvnlVPyy7Tys'),
+  isTokenAutoRefreshEnabled: true 
+});
 
 onValue(ref(db, '/ems_data'), snap => {
   log('📡 收到數據更新');
