@@ -363,7 +363,7 @@ select:focus { outline: none; border-color: #7a8ba0; box-shadow: 0 0 0 3px rgba(
 
 <script type="module">
 import { initializeApp }      from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
-import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js";
+import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js";
 import { initializeAppCheck, ReCaptchaV3Provider } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app-check.js";
 
 const firebaseConfig = {
@@ -394,7 +394,7 @@ Chart.defaults.borderColor = '#e9ecef';
 Chart.defaults.font.family = "'Noto Sans TC', sans-serif";
 Chart.defaults.font.size   = 15; /* 圖表內字體放大 */
 
-// ── Debug ──
+// ── Debug ──   
 function log(msg, type='info') {
   const el    = document.getElementById('debugLog');
   const color = type==='ok' ? '#27ae60' : type==='err' ? '#e74c3c' : '#5a6c7d';
@@ -478,7 +478,10 @@ function initView() {
   const prev  = sel.value;
   sel.innerHTML = dates.map(d=>`<option value="${d}">${d}</option>`).join('');
   sel.value     = dates.includes(prev) ? prev : dates.at(-1);
-  sel.onchange  = applyFilter;
+  sel.onchange = () => {
+    selectDate(sel.value);
+    applyFilter();
+};
   document.getElementById('dateLabel').textContent =
     S.mode==='day' ? '日期' : S.mode==='week' ? '週次' : '月份';
   applyFilter();
@@ -625,7 +628,15 @@ const COMMON = {
     x:{ ticks:{ font:{ size:14 } } },
     y:{ ticks:{ font:{ size:14 } } }
   },
-  onClick:(e,els)=>{ if(els.length&&S.mode==='day'){ S.idx=els[0].index; updateCard(); updateTrend(); } }
+  onClick:(e,els)=>{
+    if(els.length && S.mode==='day'){
+        S.idx = els[0].index;
+        const time = S.filtered[S.idx].ts.slice(11,16); // "00:00"
+        selectTime(time);
+        updateCard();
+        updateTrend();
+    }
+}
 };
 
 function destroyAll(){
@@ -694,6 +705,14 @@ function renderAgg() {
     {label:'平均PV實際',yAxisID:'y', data:S.agg.map(d=>d.avgPvA),backgroundColor:'rgba(39,174,96,0.6)',  borderColor:'#27ae60',borderWidth:1},
     {label:'平均SOH',   yAxisID:'y1',data:S.agg.map(d=>d.avgSOH),backgroundColor:'rgba(162,155,254,0.6)',borderColor:'#a29bfe',borderWidth:1},
   ]},options:{...COMMON,scales:{x:{ticks:{font:{size:14}}},y:{ticks:{font:{size:14}}},y1:{ticks:{font:{size:14}},position:'right',min:0,max:100}}}});
+}
+
+// Web → Unity 控制器
+function selectDate(date) {
+    set(ref(db, 'viewerDate'), date);
+}
+function selectTime(time) {
+    set(ref(db, 'viewerTime'), time);
 }
 
 window.resetZoom = ()=>{ ['c1','c2','c3'].forEach(k=>{ if(S.charts[k]) S.charts[k].resetZoom(); }); };
