@@ -17,7 +17,7 @@ body {
   padding: 40px 20px;
   min-height: 100vh;
   position: relative;
-  font-size: 18px; /* 基礎字體放大 */
+  font-size: 18px;
 }
 body::before, body::after {
   content: ''; position: fixed; border-radius: 50%; pointer-events: none;
@@ -33,44 +33,40 @@ body::after {
 
 .container { max-width: 1400px; margin: 0 auto; position: relative; z-index: 1; }
 
-/* ── Header ── */
 .header {
   background: white; padding: 30px 40px; border-radius: 20px;
   box-shadow: 0 2px 20px rgba(0,0,0,0.06); margin-bottom: 30px;
   border-left: 4px solid #7a8ba0;
 }
 .header h2 {
-  margin: 0 0 8px 0; color: #2c3e50; font-size: 36px; /* 28→36 */
+  margin: 0 0 8px 0; color: #2c3e50; font-size: 36px;
   font-weight: 600; font-family: 'Noto Serif TC', serif;
 }
-.header-subtitle { font-size: 18px; color: #95a5a6; font-weight: 300; } /* 14→18 */
+.header-subtitle { font-size: 18px; color: #95a5a6; font-weight: 300; }
 
-/* ── Debug ── */
 .debug-panel {
   background: #f8f9fa; padding: 15px 20px; border-radius: 12px; margin-bottom: 20px;
-  border-left: 3px solid #e74c3c; font-family: monospace; font-size: 16px; /* 12→16 */
+  border-left: 3px solid #e74c3c; font-family: monospace; font-size: 16px;
   max-height: 200px; overflow-y: auto;
 }
 .debug-title { font-weight: 600; color: #e74c3c; margin-bottom: 8px; }
 .debug-item  { color: #5a6c7d; padding: 3px 0; }
 
-/* ── Granularity ── */
 .time-granularity {
   background: white; padding: 20px 35px; border-radius: 20px;
   box-shadow: 0 2px 20px rgba(0,0,0,0.06); margin-bottom: 20px;
   display: flex; align-items: center; gap: 15px; flex-wrap: wrap;
 }
-.granularity-label { font-size: 18px; font-weight: 500; color: #5a6c7d; display: flex; align-items: center; gap: 8px; } /* 14→18 */
+.granularity-label { font-size: 18px; font-weight: 500; color: #5a6c7d; display: flex; align-items: center; gap: 8px; }
 .granularity-buttons { display: flex; gap: 10px; }
 .btn-granularity {
   padding: 10px 24px; border: 2px solid #e9ecef; border-radius: 12px;
   background: white; color: #5a6c7d; cursor: pointer; font-weight: 500;
-  font-size: 18px; transition: all 0.3s ease; font-family: 'Noto Sans TC', sans-serif; /* 14→18 */
+  font-size: 18px; transition: all 0.3s ease; font-family: 'Noto Sans TC', sans-serif;
 }
 .btn-granularity:hover  { background: #f8f9fa; border-color: #7a8ba0; color: #2c3e50; transform: translateY(-2px); }
 .btn-granularity.active { background: #7a8ba0; color: white; border-color: #7a8ba0; box-shadow: 0 4px 12px rgba(122,139,160,0.3); }
 
-/* ── Timeline nav ── */
 .timeline-nav {
   background: white; padding: 25px 35px; border-radius: 20px;
   box-shadow: 0 2px 20px rgba(0,0,0,0.06); margin-bottom: 30px;
@@ -80,19 +76,18 @@ body::after {
   display: flex; align-items: center; gap: 12px; padding: 10px 18px;
   background: #f8f9fa; border-radius: 12px; border: 1px solid #e9ecef;
 }
-.date-icon  { font-size: 24px; color: #7a8ba0; } /* 20→24 */
-.date-group label { font-size: 18px; font-weight: 500; color: #5a6c7d; margin: 0; } /* 14→18 */
+.date-icon  { font-size: 24px; color: #7a8ba0; }
+.date-group label { font-size: 18px; font-weight: 500; color: #5a6c7d; margin: 0; }
 .nav-controls { display: flex; gap: 12px; align-items: center; flex: 1; }
 .progress-indicator { flex: 1; min-width: 200px; }
 .progress-bar-container { width: 100%; height: 6px; background: #e9ecef; border-radius: 3px; overflow: hidden; }
 .progress-bar-fill { height: 100%; background: linear-gradient(90deg, #7a8ba0 0%, #95aac2 100%); border-radius: 3px; transition: width 0.3s ease; }
-.progress-text { font-size: 16px; color: #95a5a6; margin-top: 5px; text-align: center; } /* 12→16 */
+.progress-text { font-size: 16px; color: #95a5a6; margin-top: 5px; text-align: center; }
 
-/* ── Buttons ── */
 button {
   padding: 10px 20px; border: 1px solid #d1d8dd; border-radius: 10px;
   background: white; color: #5a6c7d; cursor: pointer; font-weight: 500;
-  font-size: 18px; transition: all 0.3s ease; font-family: 'Noto Sans TC', sans-serif; /* 14→18 */
+  font-size: 18px; transition: all 0.3s ease; font-family: 'Noto Sans TC', sans-serif;
 }
 button:hover:not(:disabled) { background: #f8f9fa; border-color: #7a8ba0; color: #2c3e50; transform: translateY(-1px); }
 button:disabled { background: #f8f9fa; color: #cbd5e0; border-color: #e9ecef; cursor: not-allowed; }
@@ -101,13 +96,12 @@ button:disabled { background: #f8f9fa; color: #cbd5e0; border-color: #e9ecef; cu
 
 select {
   padding: 8px 14px; border-radius: 10px; border: 1px solid #d1d8dd;
-  font-size: 18px; background: white; color: #5a6c7d; cursor: pointer; /* 14→18 */
+  font-size: 18px; background: white; color: #5a6c7d; cursor: pointer;
   transition: all 0.3s ease; font-family: 'Noto Sans TC', sans-serif;
 }
 select:hover { border-color: #7a8ba0; }
 select:focus { outline: none; border-color: #7a8ba0; box-shadow: 0 0 0 3px rgba(122,139,160,0.1); }
 
-/* ── Stats Grid ── */
 .stats-grid {
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 20px;
 }
@@ -121,10 +115,9 @@ select:focus { outline: none; border-color: #7a8ba0; box-shadow: 0 0 0 3px rgba(
 .stat-card:nth-child(3) { border-top-color: #c2cbd5; }
 .stat-card:nth-child(4) { border-top-color: #95aac2; }
 .stat-card:hover { transform: translateY(-4px); box-shadow: 0 4px 25px rgba(0,0,0,0.1); }
-.stat-label { font-size: 17px; color: #95a5a6; font-weight: 400; margin-bottom: 10px; } /* 13→17 */
-.stat-value { font-size: 32px; font-weight: 600; color: #2c3e50; font-family: 'Noto Serif TC', serif; } /* 26→32 */
+.stat-label { font-size: 17px; color: #95a5a6; font-weight: 400; margin-bottom: 10px; }
+.stat-value { font-size: 32px; font-weight: 600; color: #2c3e50; font-family: 'Noto Serif TC', serif; }
 
-/* ── Data Cards ── */
 .data-cards {
   display: grid; grid-template-columns: repeat(6, 1fr); gap: 15px; margin-bottom: 15px;
 }
@@ -136,21 +129,20 @@ select:focus { outline: none; border-color: #7a8ba0; box-shadow: 0 0 0 3px rgba(
 }
 .data-card:hover { transform: translateY(-3px); box-shadow: 0 4px 20px rgba(0,0,0,0.08); border-left-color: #7a8ba0; }
 .data-card.anomaly { border-left-color: #e74c3c; background: #fff5f5; }
-.data-label { font-size: 15px; color: #95a5a6; font-weight: 400; display: flex; align-items: center; gap: 6px; margin-bottom: 8px; } /* 12→15 */
-.dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; } /* 6→8 */
-.data-value { font-size: 22px; font-weight: 600; color: #2c3e50; font-family: 'Noto Serif TC', serif; } /* 18→22 */
+.data-label { font-size: 15px; color: #95a5a6; font-weight: 400; display: flex; align-items: center; gap: 6px; margin-bottom: 8px; }
+.dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.data-value { font-size: 22px; font-weight: 600; color: #2c3e50; font-family: 'Noto Serif TC', serif; }
 .anomaly-badge {
   display: inline-block; padding: 2px 8px; background: #e74c3c; color: white;
-  border-radius: 8px; font-size: 13px; margin-left: 6px; font-weight: 600; /* 10→13 */
+  border-radius: 8px; font-size: 13px; margin-left: 6px; font-weight: 600;
 }
 .anomaly-type-badge {
   position: absolute; top: 8px; right: 8px;
   padding: 2px 8px; background: #e67e22; color: white;
-  border-radius: 8px; font-size: 13px; font-weight: 600; /* 10→13 */
+  border-radius: 8px; font-size: 13px; font-weight: 600;
   max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
 
-/* ── Chart Cards ── */
 .chart-container {
   background: white; padding: 35px; border-radius: 20px;
   box-shadow: 0 2px 20px rgba(0,0,0,0.06); margin-bottom: 30px;
@@ -159,21 +151,20 @@ select:focus { outline: none; border-color: #7a8ba0; box-shadow: 0 0 0 3px rgba(
   display: flex; justify-content: space-between; align-items: flex-start;
   margin-bottom: 25px; padding-bottom: 15px; border-bottom: 2px solid #f1f3f5;
 }
-.chart-title { font-size: 22px; font-weight: 600; color: #2c3e50; font-family: 'Noto Serif TC', serif; } /* 18→22 */
-.chart-subtitle { font-size: 16px; color: #95a5a6; margin-top: 4px; } /* 12→16 */
+.chart-title { font-size: 22px; font-weight: 600; color: #2c3e50; font-family: 'Noto Serif TC', serif; }
+.chart-subtitle { font-size: 16px; color: #95a5a6; margin-top: 4px; }
 .legend-row { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
-.legend-item { display: flex; align-items: center; gap: 6px; font-size: 16px; color: #5a6c7d; } /* 12→16 */
-.legend-dot  { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; } /* 10→12 */
+.legend-item { display: flex; align-items: center; gap: 6px; font-size: 16px; color: #5a6c7d; }
+.legend-dot  { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
 
-/* ── Trend ── */
 .trend-indicator {
   position: fixed; bottom: 30px; right: 30px; background: white;
   padding: 20px 25px; border-radius: 16px; box-shadow: 0 4px 25px rgba(0,0,0,0.1);
   min-width: 200px; z-index: 1000;
 }
-.trend-title { font-size: 16px; color: #95a5a6; font-weight: 500; margin-bottom: 12px; text-transform: uppercase; } /* 12→16 */
-.trend-value { font-size: 28px; font-weight: 600; color: #2c3e50; font-family: 'Noto Serif TC', serif; } /* 24→28 */
-.trend-change { font-size: 17px; margin-top: 8px; } /* 13→17 */
+.trend-title { font-size: 16px; color: #95a5a6; font-weight: 500; margin-bottom: 12px; text-transform: uppercase; }
+.trend-value { font-size: 28px; font-weight: 600; color: #2c3e50; font-family: 'Noto Serif TC', serif; }
+.trend-change { font-size: 17px; margin-top: 8px; }
 .trend-up   { color: #27ae60; }
 .trend-down { color: #e74c3c; }
 .trend-flat { color: #95a5a6; }
@@ -201,19 +192,16 @@ select:focus { outline: none; border-color: #7a8ba0; box-shadow: 0 0 0 3px rgba(
 <body>
 <div class="container">
 
-  <!-- Header -->
   <div class="header fade-in">
     <h2>ESS + PV 儲能系統監控儀表板</h2>
     <div class="header-subtitle" id="lastUpdate">正在連接 Firebase...</div>
   </div>
 
-  <!-- Debug -->
   <div class="debug-panel fade-in" id="debugPanel">
     <div class="debug-title">🔍 系統除錯資訊</div>
     <div id="debugLog"></div>
   </div>
 
-  <!-- Granularity -->
   <div class="time-granularity fade-in">
     <div class="granularity-label"><span>📊</span>分析粒度</div>
     <div class="granularity-buttons">
@@ -223,7 +211,6 @@ select:focus { outline: none; border-color: #7a8ba0; box-shadow: 0 0 0 3px rgba(
     </div>
   </div>
 
-  <!-- Timeline Nav -->
   <div class="timeline-nav fade-in">
     <div class="date-group">
       <span class="date-icon">📅</span>
@@ -241,7 +228,6 @@ select:focus { outline: none; border-color: #7a8ba0; box-shadow: 0 0 0 3px rgba(
     <button onclick="resetZoom()" class="btn-primary">重置視圖</button>
   </div>
 
-  <!-- Stats -->
   <div class="stats-grid fade-in">
     <div class="stat-card"><div class="stat-label">平均原始負載</div><div id="sAvgOrig" class="stat-value">--</div></div>
     <div class="stat-card"><div class="stat-label">尖峰原始負載</div><div id="sMaxOrig" class="stat-value">--</div></div>
@@ -249,7 +235,6 @@ select:focus { outline: none; border-color: #7a8ba0; box-shadow: 0 0 0 3px rgba(
     <div class="stat-card"><div class="stat-label">平均 ESS 功率</div><div id="sAvgESS" class="stat-value">--</div></div>
   </div>
 
-  <!-- Data Cards Row 1：主要運行數據 -->
   <div class="data-cards fade-in" id="dataCards1">
     <div class="data-card">
       <div class="data-label"><span class="dot" style="background:#546e7a"></span>時間</div>
@@ -277,7 +262,6 @@ select:focus { outline: none; border-color: #7a8ba0; box-shadow: 0 0 0 3px rgba(
     </div>
   </div>
 
-  <!-- Data Cards Row 2：電池 + PV + 異常 -->
   <div class="data-cards fade-in" id="dataCards2">
     <div class="data-card">
       <div class="data-label"><span class="dot" style="background:#ffd93d"></span>SOC (%)</div>
@@ -305,7 +289,6 @@ select:focus { outline: none; border-color: #7a8ba0; box-shadow: 0 0 0 3px rgba(
     </div>
   </div>
 
-  <!-- Chart 1：負載曲線 -->
   <div class="chart-container fade-in">
     <div class="chart-header">
       <div>
@@ -321,7 +304,6 @@ select:focus { outline: none; border-color: #7a8ba0; box-shadow: 0 0 0 3px rgba(
     <canvas id="chart1" height="100"></canvas>
   </div>
 
-  <!-- Chart 2：ESS + SOC -->
   <div class="chart-container fade-in">
     <div class="chart-header">
       <div>
@@ -336,7 +318,6 @@ select:focus { outline: none; border-color: #7a8ba0; box-shadow: 0 0 0 3px rgba(
     <canvas id="chart2" height="100"></canvas>
   </div>
 
-  <!-- Chart 3：PV + SOH -->
   <div class="chart-container fade-in">
     <div class="chart-header">
       <div>
@@ -352,7 +333,6 @@ select:focus { outline: none; border-color: #7a8ba0; box-shadow: 0 0 0 3px rgba(
     <canvas id="chart3" height="100"></canvas>
   </div>
 
-  <!-- Trend -->
   <div class="trend-indicator fade-in" id="trendIndicator">
     <div class="trend-title">當前調節後負載趨勢</div>
     <div class="trend-value" id="trendValue">--</div>
@@ -392,9 +372,8 @@ const ANOMALY_COLORS = {
 Chart.defaults.color       = '#5a6c7d';
 Chart.defaults.borderColor = '#e9ecef';
 Chart.defaults.font.family = "'Noto Sans TC', sans-serif";
-Chart.defaults.font.size   = 15; /* 圖表內字體放大 */
+Chart.defaults.font.size   = 15;
 
-// ── Debug ──   
 function log(msg, type='info') {
   const el    = document.getElementById('debugLog');
   const color = type==='ok' ? '#27ae60' : type==='err' ? '#e74c3c' : '#5a6c7d';
@@ -403,16 +382,27 @@ function log(msg, type='info') {
   el.scrollTop  = el.scrollHeight;
 }
 
+// ══════════════════════════════════════════
+// ★ Web → Unity 控制器（寫入 Firebase）
+// ══════════════════════════════════════════
+function selectDate(date) {
+  set(ref(db, 'viewerDate'), date)
+    .then(() => log(`📡 Unity ← viewerDate: ${date}`, 'ok'))
+    .catch(e  => log(`❌ viewerDate 寫入失敗: ${e.message}`, 'err'));
+}
+function selectTime(time) {
+  set(ref(db, 'viewerTime'), time)
+    .then(() => log(`📡 Unity ← viewerTime: ${time}`, 'ok'))
+    .catch(e  => log(`❌ viewerTime 寫入失敗: ${e.message}`, 'err'));
+}
+
 log('🔌 連接 Firebase...');
 const app = initializeApp(firebaseConfig);
 const db  = getDatabase(app);
 
-// --- 【新增這段：初始化 App Check】 ---
-// 注意：你需要去 Google reCAPTCHA 申請一個 Site Key (v3)
 const appCheck = initializeAppCheck(app, {
-  // 填入第一串：網站金鑰 (Site Key)
   provider: new ReCaptchaV3Provider('6LcXtcksAAAAAPDSveR2n7NX5JTfwvnlVPyy7Tys'),
-  isTokenAutoRefreshEnabled: true 
+  isTokenAutoRefreshEnabled: true
 });
 
 onValue(ref(db, '/ems_data'), snap => {
@@ -458,7 +448,6 @@ onValue(ref(db, '/ems_data'), snap => {
 
 }, err => { log(`❌ 連接錯誤: ${err.message}`, 'err'); });
 
-// ── Mode ──
 window.setMode = (mode, btn) => {
   S.mode = mode;
   document.querySelectorAll('.btn-granularity').forEach(b => b.classList.remove('active'));
@@ -478,10 +467,13 @@ function initView() {
   const prev  = sel.value;
   sel.innerHTML = dates.map(d=>`<option value="${d}">${d}</option>`).join('');
   sel.value     = dates.includes(prev) ? prev : dates.at(-1);
+
+  // ★ 選日期 → 寫入 viewerDate
   sel.onchange = () => {
-    selectDate(sel.value);
+    if (S.mode === 'day') selectDate(sel.value);
     applyFilter();
-};
+  };
+
   document.getElementById('dateLabel').textContent =
     S.mode==='day' ? '日期' : S.mode==='week' ? '週次' : '月份';
   applyFilter();
@@ -498,6 +490,11 @@ function applyFilter() {
   if (S.mode==='day') {
     S.filtered = S.data.filter(d => d.ts.slice(0,10)===v);
     S.agg = [];
+    // ★ 切換日期時，自動送出 viewerDate + 第一筆 viewerTime 給 Unity
+    if (S.filtered.length) {
+      selectDate(v);
+      selectTime(S.filtered[0].ts.slice(11,16));
+    }
   } else {
     const rows = S.data.filter(d => {
       const day = d.ts.slice(0,10);
@@ -607,10 +604,26 @@ function updateTrend() {
   document.getElementById('trendChange').innerHTML = `<span class="${cls}">${sym} ${Math.abs(pct)}%</span>`;
 }
 
-document.getElementById('prev').onclick = ()=>{ if(S.idx>0){ S.idx--; updateCard(); updateTrend(); } };
-document.getElementById('next').onclick = ()=>{ if(S.idx<S.filtered.length-1){ S.idx++; updateCard(); updateTrend(); } };
+// ★ 上一筆：也更新 viewerTime
+document.getElementById('prev').onclick = () => {
+  if (S.idx > 0) {
+    S.idx--;
+    selectTime(S.filtered[S.idx].ts.slice(11,16));
+    updateCard();
+    updateTrend();
+  }
+};
 
-// ── Charts ──
+// ★ 下一筆：也更新 viewerTime
+document.getElementById('next').onclick = () => {
+  if (S.idx < S.filtered.length - 1) {
+    S.idx++;
+    selectTime(S.filtered[S.idx].ts.slice(11,16));
+    updateCard();
+    updateTrend();
+  }
+};
+
 const COMMON = {
   responsive:true, maintainAspectRatio:true,
   animation:{duration:0},
@@ -618,25 +631,21 @@ const COMMON = {
   plugins:{
     zoom:{pan:{enabled:true,mode:'x'},zoom:{wheel:{enabled:true},mode:'x'}},
     legend:{display:false},
-    tooltip:{
-      mode:'index',intersect:false,
-      titleFont:{size:15},
-      bodyFont:{size:14},
-    }
+    tooltip:{ mode:'index',intersect:false, titleFont:{size:15}, bodyFont:{size:14} }
   },
   scales:{
     x:{ ticks:{ font:{ size:14 } } },
     y:{ ticks:{ font:{ size:14 } } }
   },
-  onClick:(e,els)=>{
-    if(els.length && S.mode==='day'){
-        S.idx = els[0].index;
-        const time = S.filtered[S.idx].ts.slice(11,16); // "00:00"
-        selectTime(time);
-        updateCard();
-        updateTrend();
+  // ★ 點折線圖：更新 viewerTime
+  onClick:(e,els) => {
+    if (els.length && S.mode==='day') {
+      S.idx = els[0].index;
+      selectTime(S.filtered[S.idx].ts.slice(11,16));
+      updateCard();
+      updateTrend();
     }
-}
+  }
 };
 
 function destroyAll(){
@@ -705,14 +714,6 @@ function renderAgg() {
     {label:'平均PV實際',yAxisID:'y', data:S.agg.map(d=>d.avgPvA),backgroundColor:'rgba(39,174,96,0.6)',  borderColor:'#27ae60',borderWidth:1},
     {label:'平均SOH',   yAxisID:'y1',data:S.agg.map(d=>d.avgSOH),backgroundColor:'rgba(162,155,254,0.6)',borderColor:'#a29bfe',borderWidth:1},
   ]},options:{...COMMON,scales:{x:{ticks:{font:{size:14}}},y:{ticks:{font:{size:14}}},y1:{ticks:{font:{size:14}},position:'right',min:0,max:100}}}});
-}
-
-// Web → Unity 控制器
-function selectDate(date) {
-    set(ref(db, 'viewerDate'), date);
-}
-function selectTime(time) {
-    set(ref(db, 'viewerTime'), time);
 }
 
 window.resetZoom = ()=>{ ['c1','c2','c3'].forEach(k=>{ if(S.charts[k]) S.charts[k].resetZoom(); }); };
